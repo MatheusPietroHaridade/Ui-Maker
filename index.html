@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d12">
+  <title>JSON UI Mobile Forge — V2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><span class="logo">◆</span><div><b>JSON UI Mobile Forge</b><small>V2 · Resource Pack Editor</small></div></div>
+    <div class="actions">
+      <button id="newBtn">Novo</button>
+      <button id="importPackBtn" class="primary">Importar Pack</button>
+      <button id="exportPackBtn" class="primary">Exportar Pack</button>
+      <button id="saveBtn">Salvar Projeto</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="panel left">
+      <div class="tabs">
+        <button class="tab active" data-tab="files">Arquivos</button>
+        <button class="tab" data-tab="toolbox">Toolbox</button>
+      </div>
+      <section id="filesTab" class="tabcontent">
+        <div class="section-title">Resource Pack</div>
+        <div id="packInfo" class="packinfo">Nenhum pack importado.</div>
+        <input id="fileSearch" class="search" placeholder="Pesquisar arquivo...">
+        <div id="fileTree" class="tree"></div>
+      </section>
+      <section id="toolboxTab" class="tabcontent hidden">
+        <div class="section-title">Adicionar elemento</div>
+        <div id="toolbox" class="toolgrid"></div>
+      </section>
+    </aside>
+
+    <section class="canvas-area">
+      <div class="canvasbar">
+        <div class="selectrow">
+          <label>Tela <select id="screenPreset"><option value="mobile">Mobile</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label>
+          <label>Zoom <input id="zoom" type="range" min="25" max="200" value="80"></label>
+          <button id="gridBtn">Grade</button>
+          <button id="previewBtn">Preview</button>
+        </div>
+        <div id="currentFile">Nenhum JSON selecionado</div>
+      </div>
+      <div id="stageWrap">
+        <div id="stage">
+          <div id="screen"></div>
+          <div id="emptyCanvas">Importe um Resource Pack e abra um arquivo em <b>ui/</b>.</div>
+        </div>
+      </div>
+      <div class="statusbar">
+        <span id="status">Pronto.</span>
+        <span id="coords"></span>
+      </div>
+    </section>
+
+    <aside class="panel right">
+      <div class="tabs">
+        <button class="tab active" data-tab="hierarchy">Hierarquia</button>
+        <button class="tab" data-tab="properties">Propriedades</button>
+        <button class="tab" data-tab="raw">JSON</button>
+      </div>
+      <section id="hierarchyTab" class="tabcontent">
+        <input id="nodeSearch" class="search" placeholder="Pesquisar elemento...">
+        <div id="hierarchy" class="tree"></div>
+      </section>
+      <section id="propertiesTab" class="tabcontent hidden">
+        <div id="properties"></div>
+      </section>
+      <section id="rawTab" class="tabcontent hidden">
+        <div class="rawhead"><span>JSON original/modificado</span><button id="applyRaw">Aplicar</button></div>
+        <textarea id="rawJson" spellcheck="false"></textarea>
+      </section>
+    </aside>
+  </main>
+
+  <nav class="bottomnav">
+    <button data-mobile="files">Arquivos</button>
+    <button data-mobile="toolbox">Adicionar</button>
+    <button data-mobile="hierarchy">Hierarquia</button>
+    <button data-mobile="properties">Propriedades</button>
+    <button data-mobile="raw">JSON</button>
+  </nav>
+
+  <input id="packInput" type="file" accept=".mcpack,.mcaddon,.zip,application/zip" hidden>
+  <input id="projectInput" type="file" accept=".jfmproject,.json" hidden>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
